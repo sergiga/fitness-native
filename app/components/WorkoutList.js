@@ -1,54 +1,69 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Button,
-  SafeAreaView,
+  RefreshControl,
   StyleSheet,
   ScrollView,
+  Text,
   View,
 } from 'react-native';
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
+import { useDispatch, useSelector } from 'react-redux'
+import { FETCH_WORKOUTS } from '@store/types';
 import WorkoutListItem from '@components/WorkoutListItem';
 
 function WorkoutList() {
-  const [workoutCount, setWorkouts] = useState(0)
+  const dispatch = useDispatch()
+  const refreshing = useSelector(state => state.workouts.isFetching);
+  const workouts = useSelector(state => state.workouts.items);
 
-  const workoutList = Array(workoutCount).fill().map((workout, number) => {
-    const title = `Workout ${number}`;
-    const subtitle = 'Lo que diga fifo';
-    return (
-      <WorkoutListItem
-        title={title}
-        subtitle={subtitle} />
-    )
-  })
+  const WorkoutListItems = () => {
+    if (workouts.length === 0) {
+      return (
+        <Text style={styles.empty}>
+          No Workouts
+        </Text>
+      )
+    }
+    return workouts.map((workout, number) => {
+      const title = workout.title;
+      const subtitle = workout.subtitle;
+      return (
+        <WorkoutListItem
+          key={number}
+          title={title}
+          subtitle={subtitle} />
+      )
+    })
+  }
 
   return (
-    <SafeAreaView>
-      <Button
-        title="Add workout"
-        color="#f194ff"
-        onPress={() => setWorkouts(workoutCount + 1)}
-      />
+    <>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollView}>
-        <View style={styles.body}>
-          { workoutList }
+        style={styles.scrollView}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={() => dispatch({ type: FETCH_WORKOUTS })} />
+        }
+        >
+        <View>
+          <WorkoutListItems />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.lighter,
+    flexBasis: 1,
   },
-  body: {
-    backgroundColor: Colors.white,
-  },
+  empty: {
+    flexBasis: 1,
+    marginTop: 50,
+    textAlign: "center",
+  }
 });
 
 export default WorkoutList;
