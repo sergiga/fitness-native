@@ -9,18 +9,14 @@
 import React from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
   StatusBar,
 } from 'react-native';
-import WorkoutList from '@components/WorkoutList.component';
+import WorkoutList from '@components/WorkoutList';
 
 const App: () => React$Node = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <SafeAreaView>
         <WorkoutList />
       </SafeAreaView>
