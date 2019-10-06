@@ -12,9 +12,9 @@ function WorkoutListItem(props) {
   const { title, subtitle } = props;
 
   return (
-    <View style={styles.listItemContainer}>
-      <Text style={styles.listItemTitle}>{title}</Text>
-      <Text style={styles.listItemSubtitle}>
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.subtitle}>
         {subtitle}
       </Text>
     </View>
@@ -22,16 +22,16 @@ function WorkoutListItem(props) {
 }
 
 const styles = StyleSheet.create({
-  listItemContainer: {
+  container: {
     marginVertical: 8,
     paddingHorizontal: 8,
   },
-  listItemTitle: {
+  title: {
     fontSize: 18,
     fontWeight: '600',
     color: Colors.black,
   },
-  listItemSubtitle: {
+  subtitle: {
     marginTop: 4,
     fontSize: 16,
     fontWeight: '400',

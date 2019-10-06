@@ -10,14 +10,17 @@ function fetchMock() {
   return new Promise(resolve => {
     resolve([
       {
+        id: 1,
         title: 'Workout 1',
         subtitle: 'Fuerza'
       },
       {
+        id: 2,
         title: 'Workout 2',
         subtitle: 'Agilidad'
       },
       {
+        id: 3,
         title: 'Workout 3',
         subtitle: 'Resistencia'
       },

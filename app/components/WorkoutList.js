@@ -26,14 +26,13 @@ function WorkoutList() {
         </Text>
       )
     }
-    return workouts.map((workout, number) => {
+    return workouts.map(workout => {
       const title = workout.title;
       const subtitle = workout.subtitle;
       return (
         <WorkoutListItem
-          key={number}
-          title={title}
-          subtitle={subtitle} />
+          key={workout.id}
+          {...workout} />
       )
     })
   }
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
   },
   empty: {
     flexBasis: 1,
-    marginTop: 50,
+    marginTop: 64,
     textAlign: "center",
   }
 });
