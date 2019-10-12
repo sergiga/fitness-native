@@ -9,14 +9,11 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 function WorkoutListItem(props) {
-  const { title, subtitle } = props;
+  const { name } = props;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.subtitle}>
-        {subtitle}
-      </Text>
+      <Text style={styles.title}>{name}</Text>
     </View>
   );
 }
@@ -30,12 +27,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     color: Colors.black,
-  },
-  subtitle: {
-    marginTop: 4,
-    fontSize: 16,
-    fontWeight: '400',
-    color: Colors.dark,
   },
 });
 

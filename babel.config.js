@@ -8,6 +8,7 @@ module.exports = {
         alias: {
           "@components": "./app/components",
           "@store": "./app/store",
+          "@api": "./app/communications",
         },
       },
     ],

@@ -1,39 +1,19 @@
+import { call, put, takeLatest } from 'redux-saga/effects';
 import {
   FETCH_WORKOUTS,
   FETCH_WORKOUTS_FAILURE,
   FETCH_WORKOUTS_REQUEST,
   FETCH_WORKOUTS_SUCCESS,
 } from '@store/types';
-import { call, put, takeLatest } from 'redux-saga/effects';
-
-function fetchMock() {
-  return new Promise(resolve => {
-    resolve([
-      {
-        id: 1,
-        title: 'Workout 1',
-        subtitle: 'Fuerza'
-      },
-      {
-        id: 2,
-        title: 'Workout 2',
-        subtitle: 'Agilidad'
-      },
-      {
-        id: 3,
-        title: 'Workout 3',
-        subtitle: 'Resistencia'
-      },
-    ])
-  });
-};
+import { getWorkouts } from '@api/index';
 
 function* fetchWorkouts() {
   yield put({ type: FETCH_WORKOUTS_REQUEST })
   try {
-    const workouts = yield call(fetchMock);
-    yield put({ type: FETCH_WORKOUTS_SUCCESS, workouts })
+    const workouts = yield call(getWorkouts);
+    yield put({ type: FETCH_WORKOUTS_SUCCESS, workouts: workouts.data })
   } catch (error) {
+    console.warn(error)
     yield put({ type: FETCH_WORKOUTS_FAILURE, error })
   }
 };

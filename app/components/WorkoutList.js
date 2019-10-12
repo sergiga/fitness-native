@@ -6,9 +6,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
 import { useDispatch, useSelector } from 'react-redux'
 import { FETCH_WORKOUTS } from '@store/types';
 import WorkoutListItem from '@components/WorkoutListItem';
@@ -27,8 +24,6 @@ function WorkoutList() {
       )
     }
     return workouts.map(workout => {
-      const title = workout.title;
-      const subtitle = workout.subtitle;
       return (
         <WorkoutListItem
           key={workout.id}
