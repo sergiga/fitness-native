@@ -6,9 +6,9 @@ module.exports = {
       {
         root: ["./"],
         alias: {
-          "@components": "./app/components",
-          "@store": "./app/store",
           "@api": "./app/communications",
+          "@components": "./app/components",
+          "@navigators": "./app/navigators",
         },
       },
     ],

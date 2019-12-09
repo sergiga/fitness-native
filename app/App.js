@@ -1,31 +1,30 @@
 import React from 'react';
+import { createAppContainer } from 'react-navigation';
 import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
 } from 'react-native';
-import { Provider } from 'react-redux';
 
-import store from '@store/index';
-import WorkoutList from '@components/WorkoutList';
+import HomeNavigator from '@navigators/HomeNavigator';
+
+const AppContainer = createAppContainer(HomeNavigator);
 
 const App: () => React$Node = () => {
   return (
-    <Provider store={store}>
+    <>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
-        <WorkoutList />
+        <AppContainer />
       </SafeAreaView>
-    </Provider>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'white'
+    flex: 1
   },
 });
-
 
 export default App;
