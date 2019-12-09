@@ -9,6 +9,7 @@ module.exports = {
           "@api": "./app/communications",
           "@components": "./app/components",
           "@navigators": "./app/navigators",
+          "@pages": "./app/pages",
         },
       },
     ],

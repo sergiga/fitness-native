@@ -6,9 +6,9 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import HomeNavigator from '@navigators/HomeNavigator';
+import RootNavigator from '@navigators/root';
 
-const AppContainer = createAppContainer(HomeNavigator);
+const AppContainer = createAppContainer(RootNavigator);
 
 const App: () => React$Node = () => {
   return (
