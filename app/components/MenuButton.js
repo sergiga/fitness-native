@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
   StyleSheet,
-  Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
