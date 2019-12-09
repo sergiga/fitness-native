@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#3F4149',
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'Rubik-Medium',
     margin: 24
   }
 });
