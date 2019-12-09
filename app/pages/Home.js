@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  ScrollView,
   StyleSheet,
   View,
 } from 'react-native';
@@ -33,9 +34,28 @@ function Home(props) {
         }}
       />
       <View style={styles.menu}>
-        <MenuButton onPress={navigateToExercises}>
-          Exercises
-        </MenuButton>
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <View style={styles.listItem}>
+            <MenuButton>
+              See workout
+            </MenuButton>
+          </View>
+          <View style={styles.listItem}>
+            <MenuButton>
+              Workouts
+            </MenuButton>
+          </View>
+          <View style={styles.listItem}>
+            <MenuButton>
+              Progress
+            </MenuButton>
+          </View>
+          <View style={styles.listItem}>
+            <MenuButton onPress={navigateToExercises}>
+              Exercises
+            </MenuButton>
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -53,6 +73,10 @@ const styles = StyleSheet.create({
   menu: {
     flexGrow: 1,
     backgroundColor: '#e4e4e4',
+    padding: 24
+  },
+  listItem: {
+    marginBottom: 24
   }
 });
 

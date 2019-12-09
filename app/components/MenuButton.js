@@ -4,6 +4,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 import RText from '@components/RText';
 
 function MenuButton(props) {
@@ -14,6 +15,7 @@ function MenuButton(props) {
       <View style={styles.container}>
         <View style={styles.button}>
           <RText scale={'subtitle1'}>{children}</RText>
+          <Icon name="right" size={16} />
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -24,12 +26,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     borderRadius: 16,
-    height: 64,
-    margin: 24
+    height: 64
   },
   button: {
     flex: 1,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     margin: 24
   },
 });
