@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "target": "esnext",
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@api/*": ["app/communications/*"],
+      "@components/*": ["app/components/*"],
+      "@entities/*": ["app/model/entities/*"],
+      "@hooks/*": ["app/hooks/*"],
+      "@navigators/*": ["app/navigators/*"],
+      "@pages/*": ["app/pages/*"],
+      "@repos/*": ["app/model/repositories/*"]
+    }
+  },
+  "include": ["./app/**/*"],
+  "exclude": ["node_modules", "dist", "android", "ios"]
+}
