@@ -3,21 +3,29 @@ import {
   RefreshControl,
   ScrollView,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import { useExerciseList } from '@hooks/entities/exercises';
-
+import RText from '@components/RText';
 
 function Exercises() {
   const [refreshing, exercises, reloadData] = useExerciseList();
   const exerciseItems = exercises.map(exercise => 
-    <Text key={exercise.id}>{exercise.name}</Text>
+    <RText
+      key={exercise.id}
+    >
+      {exercise.name}
+    </RText>
   );
 
   return (
     <View style={styles.page}>
-      <Text>Exercises</Text>
+      <RText
+        style={styles.header}
+        scale={'h4'}
+      >
+        EXERCISES
+      </RText>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.list}
@@ -35,6 +43,10 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  header: {
+    margin: 24,
+    textAlign: 'center'
   },
   list: {
     flexBasis: 1,

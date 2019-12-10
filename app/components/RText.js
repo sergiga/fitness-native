@@ -5,17 +5,41 @@ import {
 } from 'react-native';
 
 function RText(props) {
-  const { children } = props
+  const { style, children } = props
   const scale = props.scale || 'body1';
 
   return (
-    <Text style={styles.common, styles[scale]}>{children}</Text>
+    <Text style={{...styles.common, ...styles[scale], ...style}}>{children}</Text>
   );
 };
 
 const styles = StyleSheet.create({
   common: {
     color: '#3F4149'
+  },
+  h1: {
+    fontSize: 96,
+    fontFamily: 'Rubik-Bold'
+  },
+  h2: {
+    fontSize: 60,
+    fontFamily: 'Rubik-Bold'
+  },
+  h3: {
+    fontSize: 48,
+    fontFamily: 'Rubik-Bold'
+  },
+  h4: {
+    fontSize: 34,
+    fontFamily: 'Rubik-Bold'
+  },
+  h5: {
+    fontSize: 24,
+    fontFamily: 'Rubik-Bold'
+  },
+  h6: {
+    fontSize: 20,
+    fontFamily: 'Rubik-Medium'
   },
   subtitle1: {
     fontSize: 16,
