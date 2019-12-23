@@ -1,9 +1,11 @@
 import axios from 'axios';
-import { EntityRepository, Repository } from "typeorm";
+import { EntityRepository, Repository, getCustomRepository } from "typeorm";
 import Exercise from "@entities/exercise";
+import MuscleRepository from '@repos/muscle';
+import MuscleInExerciseRepository from '@repos/muscle-in-exercise';
 
 @EntityRepository(Exercise)
-export class ExerciseRepository extends Repository {
+export default class ExerciseRepository extends Repository {
 
   url = '/exercises/';
 
@@ -41,6 +43,15 @@ export class ExerciseRepository extends Repository {
       exercise.name = remote.name;
       exercise.level = remote.level;
       await this.save(exercise);
+
+      // for (muscle of remote.muscles) {
+      //   MuscleRepository.manager.getOrCreateBy()
+      //   MuscleRepository.manager.getOrCreateExerciseBy({
+      //     muscleID: muscle.muscle_id,
+      //     exerciseID: exercise.id
+      //   });
+      //   muscleInExercise.remoteID = muscle.muscles_in_exercise_id;
+      //   await muscleInExerciseRepository.save(muscleInExercise);
     }
     return await this.getExercises();
   }

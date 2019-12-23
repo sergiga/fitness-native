@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ExerciseRepository } from "@repos/exercise";
-import { getCustomRepository } from "typeorm";
+import ExerciseRepository from '@repos/exercise';
+import { getCustomRepository } from 'typeorm';
 import { useState, useEffect } from 'react';
 
 

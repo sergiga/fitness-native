@@ -8,6 +8,9 @@ import {
 } from 'react-native';
 import { createConnection } from 'typeorm/browser';
 import Exercise from '@entities/exercise';
+import Muscle from '@entities/muscle';
+import MuscleInExercise from '@entities/muscle-in-exercise';
+import MuscleRepository from '@repos/muscle';
 import RootNavigator from '@navigators/root';
 
 axios.defaults.baseURL = 'http://localhost:8000';
@@ -19,11 +22,16 @@ const App: () => React$Node = () => {
     type: 'react-native',
     database: 'test',
     location: 'default',
-    // logging: ['error', 'query', 'schema'],
+    logging: ['error', 'query', 'schema'],
     synchronize: true,
+    keepConnectionAlive: true,
     entities: [
-      Exercise
+      Exercise,
+      Muscle,
+      MuscleInExercise
     ]
+  }).then(() => {
+    MuscleRepository.manager.getRemote();
   });
 
   return (
