@@ -3,14 +3,20 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  ViewStyle,
 } from 'react-native';
+import { NavigationStackProp } from 'react-navigation-stack'
 import { CalendarList } from 'react-native-calendars';
 import MenuButton from '@components/MenuButton';
 
-function Home(props) {
+interface HomeProps {
+  navigation: NavigationStackProp
+}
+
+export default function Home({ navigation }: HomeProps) {
   const navigateToExercises = () => {
-    props.navigation.navigate('Exercises')
-  }
+    navigation.navigate('Exercises');
+  };
 
   return (
     <View style={styles.page}>
@@ -61,7 +67,14 @@ function Home(props) {
   );
 };
 
-const styles = StyleSheet.create({
+interface Styles {
+  page: ViewStyle;
+  calendar: ViewStyle;
+  menu: ViewStyle;
+  listItem: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   page: {
     flex: 1,
     backgroundColor: 'white',
@@ -80,4 +93,3 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Home;

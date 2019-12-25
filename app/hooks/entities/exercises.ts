@@ -2,11 +2,12 @@ import * as React from 'react';
 import ExerciseRepository from '@repos/exercise';
 import { getCustomRepository } from 'typeorm';
 import { useState, useEffect } from 'react';
+import Exercise from '@entities/exercise';
 
 
-export function useExerciseList() {
+export function useExerciseList(): [boolean, Array<Exercise>, () => Promise<void>] {
   const [refreshing, setRefreshing] = useState(true);
-  const [exercises, setExercises] = useState([]);
+  const [exercises, setExercises] = useState<Array<Exercise>>([]);
 
   useEffect(() => {
     reloadData();

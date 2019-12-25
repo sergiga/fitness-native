@@ -4,16 +4,15 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  ViewStyle,
 } from 'react-native';
 import { useExerciseList } from '@hooks/entities/exercises';
-import RText from '@components/RText';
+import RText, { RTextStyles } from '@components/RText';
 
-function Exercises() {
+export default function Exercises() {
   const [refreshing, exercises, reloadData] = useExerciseList();
   const exerciseItems = exercises.map(exercise => 
-    <RText
-      key={exercise.id}
-    >
+    <RText key={exercise.id}>
       {exercise.name}
     </RText>
   );
@@ -21,8 +20,8 @@ function Exercises() {
   return (
     <View style={styles.page}>
       <RText
-        style={styles.header}
-        scale={'h4'}
+        textStyle={styles.header}
+        type={RTextStyles.h4}
       >
         EXERCISES
       </RText>
@@ -39,7 +38,14 @@ function Exercises() {
   );
 };
 
-const styles = StyleSheet.create({
+interface Styles {
+  page: ViewStyle;
+  header: ViewStyle;
+  list: ViewStyle;
+  empty: ViewStyle;  
+}
+
+const styles = StyleSheet.create<Styles>({
   page: {
     flex: 1,
     backgroundColor: 'white',
@@ -57,5 +63,3 @@ const styles = StyleSheet.create({
     textAlign: "center",
   }
 });
-
-export default Exercises;

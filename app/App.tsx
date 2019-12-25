@@ -24,7 +24,6 @@ const App: () => React$Node = () => {
     location: 'default',
     logging: ['error', 'query', 'schema'],
     synchronize: true,
-    keepConnectionAlive: true,
     entities: [
       Exercise,
       Muscle,

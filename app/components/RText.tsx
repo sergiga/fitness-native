@@ -1,21 +1,43 @@
 import * as React from 'react';
 import {
   StyleSheet,
-  Text
+  Text,
+  TextStyle,
+  StyleProp
 } from 'react-native';
 
-function RText(props) {
-  const { style, children } = props
-  const scale = props.scale || 'body1';
+interface IProps {
+  children: React.ReactNode;
+  type?: StyleProp<TextStyle>;
+  textStyle?: StyleProp<TextStyle>;
+}
 
+export default function RText({ children, textStyle, type }: IProps) {
   return (
-    <Text style={{...styles.common, ...styles[scale], ...style}}>{children}</Text>
+    <Text style={[RTextStyles.common, type, textStyle]}>{children}</Text>
   );
 };
 
-const styles = StyleSheet.create({
+interface Style {
+  common: TextStyle;
+  h1: TextStyle;
+  h2: TextStyle;
+  h3: TextStyle;
+  h4: TextStyle;
+  h5: TextStyle;
+  h6: TextStyle;
+  subtitle1: TextStyle;
+  subtitle2: TextStyle;
+  body1: TextStyle;
+  body2: TextStyle;
+  caption: TextStyle;
+}
+
+export const RTextStyles = StyleSheet.create<Style>({
   common: {
-    color: '#3F4149'
+    color: '#3F4149',
+    fontSize: 16,
+    fontFamily: 'Rubik-Regular'
   },
   h1: {
     fontSize: 96,
@@ -62,5 +84,3 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik-Regular'
   }
 });
-
-export default RText;

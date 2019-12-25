@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import RText from '@components/RText';
+import RText, { RTextStyles } from '@components/RText';
 
 function MenuButton(props) {
   const { onPress, children } = props
@@ -14,7 +14,7 @@ function MenuButton(props) {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.button}>
-          <RText scale={'subtitle1'}>{children}</RText>
+          <RText scale={RTextStyles.subtitle1}>{children}</RText>
           <Icon name="right" size={16} />
         </View>
       </View>
