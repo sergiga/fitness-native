@@ -3,18 +3,23 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   View,
+  ViewStyle,
+  GestureResponderEvent,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import RText, { RTextStyles } from '@components/RText';
 
-function MenuButton(props) {
-  const { onPress, children } = props
+interface IProps {
+  onPress: (event: GestureResponderEvent) => void;
+  children: React.ReactNode;
+}
 
+export default function MenuButton({ onPress, children }: IProps) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.button}>
-          <RText scale={RTextStyles.subtitle1}>{children}</RText>
+          <RText type={RTextStyles.subtitle1}>{children}</RText>
           <Icon name="right" size={16} />
         </View>
       </View>
@@ -22,7 +27,12 @@ function MenuButton(props) {
   );
 };
 
-const styles = StyleSheet.create({
+interface Styles {
+  container: ViewStyle;
+  button: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   container: {
     backgroundColor: 'white',
     borderRadius: 16,
@@ -36,5 +46,3 @@ const styles = StyleSheet.create({
     margin: 24
   },
 });
-
-export default MenuButton;
