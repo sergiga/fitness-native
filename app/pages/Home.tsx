@@ -5,15 +5,15 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { NavigationStackProp } from 'react-navigation-stack'
 import { CalendarList } from 'react-native-calendars';
+import { NavigationStackProp } from 'react-navigation-stack';
 import MenuButton from '@components/MenuButton';
 
 interface HomeProps {
-  navigation: NavigationStackProp
+  navigation: NavigationStackProp;
 }
 
-export default function Home({ navigation }: HomeProps) {
+export function Home({ navigation }: HomeProps) {
   const navigateToExercises = () => {
     navigation.navigate('Exercises');
   };
@@ -41,21 +41,6 @@ export default function Home({ navigation }: HomeProps) {
       />
       <View style={styles.menu}>
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View style={styles.listItem}>
-            <MenuButton>
-              See workout
-            </MenuButton>
-          </View>
-          <View style={styles.listItem}>
-            <MenuButton>
-              Workouts
-            </MenuButton>
-          </View>
-          <View style={styles.listItem}>
-            <MenuButton>
-              Progress
-            </MenuButton>
-          </View>
           <View style={styles.listItem}>
             <MenuButton onPress={navigateToExercises}>
               Exercises

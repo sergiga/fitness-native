@@ -1,38 +1,36 @@
 import axios from 'axios';
-import { EntityRepository, Repository, getCustomRepository } from 'typeorm';
-import Muscle from '@entities/muscle';
+import { EntityRepository, Repository, getCustomRepository } from 'typeorm/browser';
+import { Muscle } from '@entities/muscle';
 
 @EntityRepository(Muscle)
-export default class MuscleRepository extends Repository {
+export class MuscleManager extends Repository<Muscle> {
 
   url = '/muscles/';
-  entity = 'muscle';
 
-  static get manager() {
-    return getCustomRepository(MuscleRepository);
+  static get manager() { return getCustomRepository(MuscleManager) }
+
+  async getAll(): Promise<Muscle[]> {
+    return this.createQueryBuilder('muscle').getMany();
   }
 
-  async getAll() {
-    return this.createQueryBuilder(this.entity).getMany();
-  }
-
-  async getBy({ remoteID }) {
-    return this.createQueryBuilder(this.entity)
+  async getBy({ remoteID = 0 }): Promise<Muscle | undefined> {
+    if (remoteID === 0) { return undefined }
+    return this.createQueryBuilder('muscle')
       .where('muscle.id == :remoteID', { remoteID })
       .getOne();
   }
 
-  async createBy({ remoteID }) {
+  async createBy({ remoteID = 0 }): Promise<Muscle> {
     const muscle = this.create();
     muscle.remoteID = remoteID;
     return muscle;
   }
 
-  async getOrCreateBy({ remoteID }) {
+  async getOrCreateBy({ remoteID = 0 }): Promise<Muscle> {
     return await this.getBy({ remoteID }) || await this.createBy({ remoteID })
   }
 
-  async getRemote() {
+  async getRemotes(): Promise<Muscle[]> {
     let remotes = [];
     try {
       const response = await axios.get(this.url);
@@ -40,7 +38,7 @@ export default class MuscleRepository extends Repository {
     } catch (error) {
       console.info(error);
     }
-    for (remote of remotes) {
+    for (const remote of remotes) {
       const remoteID = remote.id;
       const muscle = await this.getOrCreateBy({ remoteID });
       muscle.name = remote.name;

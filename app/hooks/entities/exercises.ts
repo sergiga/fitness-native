@@ -1,8 +1,7 @@
 import * as React from 'react';
-import ExerciseRepository from '@repos/exercise';
-import { getCustomRepository } from 'typeorm';
 import { useState, useEffect } from 'react';
-import Exercise from '@entities/exercise';
+import { Exercise } from '@entities/exercise';
+import { ExerciseManager } from '@managers/exercise';
 
 
 export function useExerciseList(): [boolean, Array<Exercise>, () => Promise<void>] {
@@ -15,8 +14,7 @@ export function useExerciseList(): [boolean, Array<Exercise>, () => Promise<void
 
   const reloadData = async () => {
     setRefreshing(true)
-    const manager = getCustomRepository(ExerciseRepository);
-    const data = await manager.getRemoteExercises();
+    const data = await ExerciseManager.manager.getRemotes();
     setRefreshing(false)
     setExercises(data);
   };

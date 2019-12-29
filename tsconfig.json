@@ -2,15 +2,18 @@
     "compilerOptions": {
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
+        "emitDecoratorMetadata": true,
         "esModuleInterop": true,
+        "experimentalDecorators": true,
         "isolatedModules": true,
         "jsx": "react",
         "lib": ["es6"],
         "moduleResolution": "node",
         "noEmit": true,
-        "strict": true,
+        "strict": false,
+        "strictPropertyInitialization": false,
         "target": "esnext",
-        "baseUrl": "./",
+        "baseUrl": ".",
         "paths": {
             "@api/*": ["app/communications/*"],
             "@components/*": ["app/components/*"],
@@ -18,7 +21,7 @@
             "@hooks/*": ["app/hooks/*"],
             "@navigators/*": ["app/navigators/*"],
             "@pages/*": ["app/pages/*"],
-            "@repos/*": ["app/model/repositories/*"]
+            "@managers/*": ["app/model/managers/*"]
         }
     },
     "exclude": [

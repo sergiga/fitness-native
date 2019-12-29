@@ -11,7 +11,7 @@
       "@hooks/*": ["app/hooks/*"],
       "@navigators/*": ["app/navigators/*"],
       "@pages/*": ["app/pages/*"],
-      "@repos/*": ["app/model/repositories/*"]
+      "@managers/*": ["app/model/managers/*"]
     }
   },
   "include": ["./app/**/*"],

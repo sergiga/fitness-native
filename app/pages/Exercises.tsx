@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as React from 'react';
 import {
   RefreshControl,
@@ -6,17 +7,33 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { useExerciseList } from '@hooks/entities/exercises';
 import RText, { RTextStyles } from '@components/RText';
+import { useExerciseList } from '@hooks/entities/exercises';
+import { Exercise } from '@entities/exercise';
 
-export default function Exercises() {
-  const [refreshing, exercises, reloadData] = useExerciseList();
-  const exerciseItems = exercises.map(exercise => 
-    <RText key={exercise.id}>
-      {exercise.name}
-    </RText>
+function renderExercises(exercises: Exercise[]) {
+  return exercises.map(exercise =>
+    <View key={exercise.id}>
+      <RText type={RTextStyles.subtitle1}>{exercise.name}</RText>
+      <View>
+        {renderMusclesFor(exercise)}
+      </View>
+    </View>
   );
+}
 
+function renderMusclesFor(exercise: Exercise) {
+  return exercise.musclesInExercise
+    .map(muscleInExercise => muscleInExercise.muscle)
+    .map(muscle =>
+      <View key={muscle.id}>
+        <RText type={RTextStyles.body2}>{muscle.name}</RText>
+      </View>
+    );
+}
+
+export function Exercises() {
+  const [refreshing, exercises, reloadData] = useExerciseList();
   return (
     <View style={styles.page}>
       <RText
@@ -32,7 +49,7 @@ export default function Exercises() {
           <RefreshControl refreshing={refreshing} onRefresh={reloadData} />
         }
         >
-        {exerciseItems}
+        {renderExercises(exercises)}
       </ScrollView>
     </View>
   );
