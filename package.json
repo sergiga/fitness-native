@@ -26,7 +26,7 @@
     "react-navigation": "^4.0.10",
     "react-navigation-hooks": "^1.1.0",
     "react-navigation-stack": "^1.9.4",
-    "typeorm": "^0.2.21"
+    "typeorm": "^0.2.25"
   },
   "devDependencies": {
     "@babel/core": "7.6.2",
